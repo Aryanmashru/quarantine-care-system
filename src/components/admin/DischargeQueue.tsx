@@ -73,20 +73,21 @@ export const DischargeQueue: React.FC = () => {
                   key={patient.id}
                   className="p-4 flex flex-col md:flex-row md:items-center justify-between gap-4 hover:bg-slate-50 transition-colors"
                 >
-                  <div className="flex items-start gap-3.5">
-                    <div className="w-11 h-11 rounded-lg bg-emerald-100 border border-emerald-200 flex flex-col items-center justify-center font-bold text-emerald-900">
+                  <div 
+                    onClick={() => setSelectedPatientId(patient.id)}
+                    className="flex items-start gap-3.5 cursor-pointer group flex-1"
+                    title="Click to view temperature trend chart"
+                  >
+                    <div className="w-11 h-11 rounded-lg bg-emerald-100 border border-emerald-200 flex flex-col items-center justify-center font-bold text-emerald-900 group-hover:border-emerald-400 transition-colors">
                       <span className="text-[9px] uppercase text-emerald-800 font-semibold leading-none">Bed</span>
                       <span className="text-sm leading-none mt-0.5">{patient.bed}</span>
                     </div>
 
                     <div>
                       <div className="flex items-center gap-2">
-                        <button
-                          onClick={() => setSelectedPatientId(patient.id)}
-                          className="font-bold text-sm text-slate-900 hover:text-emerald-700 transition-colors text-left"
-                        >
+                        <span className="font-bold text-sm text-slate-900 group-hover:text-emerald-700 transition-colors text-left">
                           {patient.name}
-                        </button>
+                        </span>
                         <span className="text-xs text-slate-500">({patient.age}y)</span>
                         <span className="text-[10px] font-bold bg-emerald-100 text-emerald-900 border border-emerald-300 px-2 py-0.5 rounded">
                           Streak: {streak} Days

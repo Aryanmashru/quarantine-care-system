@@ -155,20 +155,21 @@ export const NurseWorklist: React.FC = () => {
                   className="p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-4 hover:bg-slate-50 transition-colors"
                 >
                   {/* Bed & Details */}
-                  <div className="flex items-center gap-3.5">
-                    <div className="w-11 h-11 rounded-lg bg-slate-100 border border-slate-200 flex flex-col items-center justify-center font-bold text-slate-800">
+                  <div 
+                    onClick={() => setSelectedPatientId(patient.id)}
+                    className="flex items-center gap-3.5 cursor-pointer group flex-1"
+                    title="Click to view temperature trend chart"
+                  >
+                    <div className="w-11 h-11 rounded-lg bg-slate-100 border border-slate-200 flex flex-col items-center justify-center font-bold text-slate-800 group-hover:border-emerald-400 transition-colors">
                       <span className="text-[9px] uppercase text-slate-500 font-semibold leading-none">Bed</span>
                       <span className="text-sm text-emerald-800 leading-none mt-0.5">{patient.bed}</span>
                     </div>
 
                     <div>
                       <div className="flex items-center gap-2">
-                        <button
-                          onClick={() => setSelectedPatientId(patient.id)}
-                          className="font-bold text-sm text-slate-900 hover:text-emerald-700 transition-colors text-left"
-                        >
+                        <span className="font-bold text-sm text-slate-900 group-hover:text-emerald-700 transition-colors text-left">
                           {patient.name}
-                        </button>
+                        </span>
                         <span className="text-xs text-slate-500">({patient.age}y)</span>
 
                         {patient.status === 'discharge_recommended' && (

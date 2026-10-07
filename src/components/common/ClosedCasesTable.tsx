@@ -6,7 +6,7 @@ import { getLengthOfStayDays } from '@/utils/calculations';
 import { Search, FileText, CheckCircle2, XCircle } from 'lucide-react';
 
 export const ClosedCasesTable: React.FC = () => {
-  const { patients } = useFacilityStore();
+  const { patients, setSelectedPatientId } = useFacilityStore();
   const [searchQuery, setSearchQuery] = useState('');
 
   const closedPatients = patients
@@ -31,7 +31,7 @@ export const ClosedCasesTable: React.FC = () => {
             <h1 className="text-lg font-bold text-slate-900 tracking-tight">Closed Cases Archive</h1>
           </div>
           <p className="text-xs text-slate-500 mt-1">
-            Historical read-only records of all discharged and deceased patients.
+            Historical read-only records of all discharged and deceased patients. Click any row to view temperature trend chart.
           </p>
         </div>
 
@@ -68,8 +68,13 @@ export const ClosedCasesTable: React.FC = () => {
                 const isDischarged = patient.status === 'discharged';
 
                 return (
-                  <tr key={patient.id} className="hover:bg-slate-50 transition-colors">
-                    <td className="p-4 font-bold text-slate-900">
+                  <tr 
+                    key={patient.id} 
+                    onClick={() => setSelectedPatientId(patient.id)}
+                    className="hover:bg-emerald-50/50 cursor-pointer transition-colors"
+                    title="Click to view temperature trend chart"
+                  >
+                    <td className="p-4 font-bold text-slate-900 hover:text-emerald-700">
                       {patient.name}
                       <span className="block text-[10px] text-slate-400 font-normal">{patient.id}</span>
                     </td>
